@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3461/3461974.png">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title id="titleName">Bistrot Chez Remy</title>
+</head>
+
+<body>
+    <div id="menu" class="menu">
+        
+        <button id="returnPage" class="btn-Inicio" title="Home"><img src="https://cdn-icons-png.flaticon.com/512/3461/3461974.png"></button>
+    </div>
+    <div class="receita">
+        <div class="info-receita">
+            <div class="superior-principal">
+                <div id="gerarImage" class="gerarImage">
+                </div>
+                <div class="infoReceitaSelect">
+                    <h1 id="nomeDaReceita">
+                    </h1>
+                    <h2 id="nomeDoAutor">
+                        Author:
+                    </h2>
+                    <h3 id="descricaoReceita">
+                        Description :
+                    </h3>
+                </div>
+            </div>
+            <div class="inferior-principal">
+                <div class="ingredientesDaReceita">
+                    <h3>Ingredients: </h3>
+                    <ul id="ingredientesList" style="overflow: auto;">
+                    </ul>
+                </div>
+                <div class="metodosDaReceita">
+                    <h3>Methods: </h3>
+                    <ul id="metodosList" style="overflow: auto;">
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="div-pages" class="div-pages"></div>
+    <script src="page-receita.js"></script>
+</body>
+
+</html>
