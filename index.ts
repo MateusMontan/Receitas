@@ -56,15 +56,19 @@ async function fetchList() {
                 let ingredientsSplit = (ingredientsTXT as HTMLInputElement).value.split(",");
                 let cont = 0;
                 
+                console.log(ingredientsSplit.length);
+                
                 for(let i=0; i < ingredientsSplit.length; i++){
                     for(let j=0; j<item.Ingredients.length;j++){
                         if(item.Ingredients[j].toUpperCase().includes(ingredientsSplit[i].toUpperCase())){
                             cont += 1;
+                            console.log(cont);
                             break;
                         }
                     }
                 }
                 if(cont == ingredientsSplit.length){
+                    
                     return item;
                 }
             })
@@ -101,7 +105,7 @@ function renderReceita() {
             break;
         }
         (divROOT as HTMLDivElement).innerHTML += `
-                    <button id="item${i}" class="noneBtn" value="${i}"><div  class="item" >
+                    <button id="item${i}" class="noneBtn" value="${listaCompleta[i].Name}"><div  class="item" >
                         <div class="div-img" style="background-image: url(${listaCompleta[i].urlImage}); background-size: 280px 180px;">
                             <div class="div-info style="filter: blur(8px);"">
                                 <h1> ${listaCompleta[i].Name} </h1>
@@ -136,7 +140,7 @@ function gerarBTNDiv() {
 
         try {
             (listItem[i] as HTMLButtonElement).addEventListener("click", function () {
-                localStorage.setItem("idReceita", this.value);
+                localStorage.setItem("chavePrimaria", this.value);
                 window.location.assign("page-receita.html");
             });
 

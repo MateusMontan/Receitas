@@ -1,21 +1,22 @@
-let idReceita = localStorage.getItem("idReceita") as string;
-let id = parseInt(idReceita);
-let receitaEscolhida: RECEITA
+let chave = localStorage.getItem("chavePrimaria") as string;
+let receitaEscolhida: RECEITA[];
 
 async function fetchList2() {
     try {
         const listaFetch = await (await fetch("https://receitas-server.vercel.app/api").then()).json();
         let aux: RECEITA[] = listaFetch;
-        receitaEscolhida = aux[id];
+        receitaEscolhida = aux.filter((item)=>{
+            return item.Name.toUpperCase().includes(chave.toUpperCase());
+        });
         console.log(receitaEscolhida);
-        gerarIngreMet(receitaEscolhida as RECEITA);
+        gerarIngreMet(receitaEscolhida[0] as RECEITA);
         eventList();
 
-        (titleValue as HTMLTitleElement).innerHTML = receitaEscolhida.Name;
-        (nomeDaReceita as HTMLHeadingElement).innerHTML += receitaEscolhida.Name;
-        (nomeDoAutor as HTMLHeadingElement).innerHTML += receitaEscolhida.Author;
-        (descricaoReceita as HTMLHeadingElement).innerHTML += receitaEscolhida.Description;
-        (divImg as HTMLDivElement).innerHTML = `<img  src="${receitaEscolhida.urlImage}">`;
+        (titleValue as HTMLTitleElement).innerHTML = receitaEscolhida[0].Name;
+        (nomeDaReceita as HTMLHeadingElement).innerHTML += receitaEscolhida[0].Name;
+        (nomeDoAutor as HTMLHeadingElement).innerHTML += receitaEscolhida[0].Author;
+        (descricaoReceita as HTMLHeadingElement).innerHTML += receitaEscolhida[0].Description;
+        (divImg as HTMLDivElement).innerHTML = `<img  src="${receitaEscolhida[0].urlImage}">`;
     } catch {
 
     }

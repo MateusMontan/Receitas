@@ -8,23 +8,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-let idReceita = localStorage.getItem("idReceita");
-let id = parseInt(idReceita);
+let chave = localStorage.getItem("chavePrimaria");
 let receitaEscolhida;
 function fetchList2() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const listaFetch = yield (yield fetch("https://receitas-server.vercel.app/api").then()).json();
             let aux = listaFetch;
-            receitaEscolhida = aux[id];
+            receitaEscolhida = aux.filter((item) => {
+                return item.Name.toUpperCase().includes(chave.toUpperCase());
+            });
             console.log(receitaEscolhida);
-            gerarIngreMet(receitaEscolhida);
+            gerarIngreMet(receitaEscolhida[0]);
             eventList();
-            titleValue.innerHTML = receitaEscolhida.Name;
-            nomeDaReceita.innerHTML += receitaEscolhida.Name;
-            nomeDoAutor.innerHTML += receitaEscolhida.Author;
-            descricaoReceita.innerHTML += receitaEscolhida.Description;
-            divImg.innerHTML = `<img  src="${receitaEscolhida.urlImage}">`;
+            titleValue.innerHTML = receitaEscolhida[0].Name;
+            nomeDaReceita.innerHTML += receitaEscolhida[0].Name;
+            nomeDoAutor.innerHTML += receitaEscolhida[0].Author;
+            descricaoReceita.innerHTML += receitaEscolhida[0].Description;
+            divImg.innerHTML = `<img  src="${receitaEscolhida[0].urlImage}">`;
         }
         catch (_a) {
         }
